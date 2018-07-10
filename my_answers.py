@@ -27,8 +27,15 @@ def window_transform_series(series, window_size):
 
 # TODO: build an RNN to perform regression on our time series input/output data
 def build_part1_RNN(window_size):
-    pass
-
+    """
+    layer 1 uses an LSTM module with 5 hidden units (note here the input_shape = (window_size,1))
+    layer 2 uses a fully connected module with one unit
+    """
+    model = Sequential()
+    model.add(LSTM(5, input_shape=(window_size,1)))
+    model.add(Dense(1))
+    model.summary()
+    return model
 
 ### TODO: return the text input with only ascii lowercase and the punctuation given below included.
 def cleaned_text(text):
