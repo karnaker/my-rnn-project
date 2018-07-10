@@ -43,7 +43,7 @@ def cleaned_text(text):
     ascii_lowercase = ['a', 'b', 'c', 'd', 'e', 'f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     spaces = [' ']
     clean_characters = punctuation + ascii_lowercase + spaces
-    clean_text = i for i in text if i in clean_characters
+    clean_text = (i for i in text if i in clean_characters)
     
     return ''.join(clean_text)
 
@@ -52,6 +52,11 @@ def window_transform_text(text, window_size, step_size):
     # containers for input/output pairs
     inputs = []
     outputs = []
+    
+    slide_number = len(text)-window_size
+    for i in range(0,slide_number,step_size):
+        inputs.append(text[i:i+window_size])
+        outputs.append(text[i+window_size])
 
     return inputs,outputs
 
